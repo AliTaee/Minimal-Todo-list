@@ -27,7 +27,9 @@ function App() {
           ))}
         </ul>
         <div className="add-note-container">
+          <label htmlFor="addNoteItem">Add New note</label>
           <input
+            id="addNoteItem"
             autoFocus
             type="text"
             value={toAddList}
