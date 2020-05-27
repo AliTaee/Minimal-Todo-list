@@ -23,7 +23,7 @@ function App() {
       <header className="App-header">
         <ul className="App-list">
           {todoList.map((todo) => (
-            <li key={todo.key}>{todo.title}</li>
+            <li key={todo.id}>{todo.title}</li>
           ))}
         </ul>
         <div className="add-note-container">
