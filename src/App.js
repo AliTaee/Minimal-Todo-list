@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [click, setClick] = useState(0);
+function App(props) {
+  const { num } = props;
+  const [click, setClick] = useState(num);
 
   return (
     <div className="App">
