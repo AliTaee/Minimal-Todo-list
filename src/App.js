@@ -1,20 +1,42 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function App(props) {
-  const { num } = props;
-  const [click, setClick] = useState(num);
+function App() {
+  const [todoList, setTodoList] = useState([
+    { id: 1, title: "Buy milk", done: false },
+    { id: 2, title: "Learning React", done: false },
+  ]);
+  const [toAddList, setToAddList] = useState("");
+
+  const handelAddNote = () => {
+    // Add a new todo list
+    setTodoList([
+      ...todoList,
+      { id: todoList.length + 1, title: toAddList, done: false },
+    ]);
+    // Clear input field
+    setToAddList("");
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>{click}</p>
-        <button className="App-button" onClick={() => setClick(click + 1)}>
-          Plus
-        </button>
-        <button className="App-button" onClick={() => setClick(click - 1)}>
-          Minus
-        </button>
+        <ul className="App-list">
+          {todoList.map((todo) => (
+            <li key={todo.key}>{todo.title}</li>
+          ))}
+        </ul>
+        <div className="add-note-container">
+          <input
+            autoFocus
+            type="text"
+            value={toAddList}
+            onChange={(e) => setToAddList(e.target.value)}
+          />
+          <button className="App-button" onClick={handelAddNote}>
+            Add to list
+          </button>
+        </div>
       </header>
     </div>
   );
