@@ -19,9 +19,9 @@ function App() {
   };
 
   // Toggle todo state
-  const toggleTodoState = (noteId) => {
+  const toggleTodoState = (todoId) => {
     const newState = todoList.map((todo) => {
-      if (todo.id === noteId) {
+      if (todo.id === todoId) {
         return {
           ...todo,
           done: !todo.done,
@@ -29,6 +29,12 @@ function App() {
       }
       return todo;
     });
+    setTodoList(newState);
+  };
+
+  //Delete todo
+  const deleteTodo = (todoId) => {
+    const newState = todoList.filter((todo) => todo.id !== todoId);
     setTodoList(newState);
   };
 
@@ -44,6 +50,12 @@ function App() {
                 value={todo.done}
                 onChange={() => toggleTodoState(todo.id)}
               />
+              <button
+                onClick={() => deleteTodo(todo.id)}
+                className="todo-delete"
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

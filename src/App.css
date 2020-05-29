@@ -24,6 +24,16 @@
   margin-right: 10px;
 }
 
+.todo-delete {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background: red;
+}
+
 .todo-submit {
   width: 125px;
   cursor: pointer;
