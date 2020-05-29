@@ -17,6 +17,20 @@ describe("Test Todo list", () => {
     expect(screen.getByText(todoList[1].title)).toBeInTheDocument();
   });
 
+  test("Must have 2 delete button on list", () => {
+    expect(screen.getAllByText(/delete/i)).toHaveLength(2);
+  });
+
+  test("Delete a note and there must be a single note on the list", () => {
+    // Get first button delete
+    const firstDeleteButton = screen.getAllByText(/delete/i)[0];
+    // Click!
+    fireEvent.click(firstDeleteButton);
+    // Check result
+    expect(screen.queryByText(todoList[0].title)).not.toBeInTheDocument();
+    expect(screen.getByText(todoList[1].title)).toBeInTheDocument();
+  });
+
   test("There must be Button to add note to list", () => {
     const addButton = screen.getByText(/Add to list/i);
     expect(addButton).toBeInTheDocument();
