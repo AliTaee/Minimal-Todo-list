@@ -4,9 +4,14 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+const todoList = [
+  { id: 1, title: "Buy milk", done: false },
+  { id: 2, title: "Learning React", done: false },
+];
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App todo={todoList} />
   </React.StrictMode>,
   document.getElementById("root")
 );

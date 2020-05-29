@@ -9,7 +9,7 @@ describe("Test Todo list", () => {
   ];
 
   beforeEach(() => {
-    render(<App />);
+    render(<App todo={todoList} />);
   });
 
   test("Must have 2 note on list", () => {

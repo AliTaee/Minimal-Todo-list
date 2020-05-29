@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function App() {
-  const [todoList, setTodoList] = useState([
-    { id: 1, title: "Buy milk", done: false },
-    { id: 2, title: "Learning React", done: false },
-  ]);
+function App(props) {
+  const { todo } = props;
+  const [todoList, setTodoList] = useState(todo);
   const [toAddList, setToAddList] = useState("");
 
   const handelAddToDo = () => {
