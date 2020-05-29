@@ -13,18 +13,18 @@
   color: white;
 }
 
-.note-list {
+.todo-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.add-note-container label {
+.add-todo-container label {
   margin-right: 10px;
 }
 
-.note-submit {
+.todo-submit {
   width: 125px;
   cursor: pointer;
   background: #61dafb;

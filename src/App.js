@@ -8,7 +8,7 @@ function App() {
   ]);
   const [toAddList, setToAddList] = useState("");
 
-  const handelAddNote = () => {
+  const handelAddToDo = () => {
     // Add a new todo list
     setTodoList([
       ...todoList,
@@ -18,8 +18,8 @@ function App() {
     setToAddList("");
   };
 
-  // toggle todo state
-  const handleNoteState = (noteId) => {
+  // Toggle todo state
+  const toggleTodoState = (noteId) => {
     const newState = todoList.map((todo) => {
       if (todo.id === noteId) {
         return {
@@ -35,28 +35,28 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ul className="note-list">
+        <ul className="todo-list">
           {todoList.map((todo) => (
             <li key={todo.id}>
               {todo.title}
               <input
                 type="checkbox"
                 value={todo.done}
-                onChange={() => handleNoteState(todo.id)}
+                onChange={() => toggleTodoState(todo.id)}
               />
             </li>
           ))}
         </ul>
-        <div className="add-note-container">
-          <label htmlFor="addNoteItem">Add New note</label>
+        <div className="add-todo-container">
+          <label htmlFor="addTodoItem">Add New note</label>
           <input
-            id="addNoteItem"
+            id="addTodoItem"
             autoFocus
             type="text"
             value={toAddList}
             onChange={(e) => setToAddList(e.target.value)}
           />
-          <button className="note-submit" onClick={handelAddNote}>
+          <button className="todo-submit" onClick={handelAddToDo}>
             Add to list
           </button>
         </div>
