@@ -9,11 +9,13 @@ function App() {
   const [toAddList, setToAddList] = useState("");
 
   const handelAddToDo = () => {
+    let maxId = 0;
+    todoList.forEach((todo) => {
+      if (todo.id > maxId) maxId = todo.id;
+    });
+    maxId++;
     // Add a new todo list
-    setTodoList([
-      ...todoList,
-      { id: todoList.length + 1, title: toAddList, done: false },
-    ]);
+    setTodoList([...todoList, { id: maxId, title: toAddList, done: false }]);
     // Clear input field
     setToAddList("");
   };
