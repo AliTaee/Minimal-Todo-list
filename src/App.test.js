@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-describe("Test Todo list", () => {
+describe("Test Todo list with initial data", () => {
   const todoList = [
     { id: 1, title: "Buy milk", done: false },
     { id: 2, title: "Learning React", done: false },
@@ -42,5 +42,15 @@ describe("Test Todo list", () => {
     });
     fireEvent.click(screen.getByText(/Add to list/i));
     expect(screen.getByText("learning unit testing")).toBeInTheDocument();
+  });
+});
+
+describe("Test todo list with no initial data!", () => {
+  beforeEach(() => {
+    render(<App todo={[]} />);
+  });
+
+  test("There must be a proper massege to show", () => {
+    expect(screen.getByText(/There is nothing todo!/i)).toBeInTheDocument();
   });
 });

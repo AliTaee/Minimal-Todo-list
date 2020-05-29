@@ -41,24 +41,28 @@ function App(props) {
   return (
     <div className="App">
       <header className="App-header">
-        <ul className="todo-list">
-          {todoList.map((todo) => (
-            <li key={todo.id}>
-              {todo.title}
-              <input
-                type="checkbox"
-                value={todo.done}
-                onChange={() => toggleTodoState(todo.id)}
-              />
-              <button
-                onClick={() => deleteTodo(todo.id)}
-                className="todo-delete"
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        {todoList.length ? (
+          <ul className="todo-list">
+            {todoList.map((todo) => (
+              <li key={todo.id}>
+                {todo.title}
+                <input
+                  type="checkbox"
+                  value={todo.done}
+                  onChange={() => toggleTodoState(todo.id)}
+                />
+                <button
+                  onClick={() => deleteTodo(todo.id)}
+                  className="todo-delete"
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>There is nothing todo!</p>
+        )}
         <div className="add-todo-container">
           <label htmlFor="addTodoItem">Add New note</label>
           <input
