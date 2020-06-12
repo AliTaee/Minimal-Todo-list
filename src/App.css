@@ -13,15 +13,43 @@
   color: white;
 }
 
+.error {
+  color: red;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  list-style: none;
+}
+
+.todo-list .note-item:last-of-type {
+  margin-bottom: 0;
 }
 
 .add-todo-container label {
   margin-right: 10px;
+}
+
+.note-item {
+  margin-bottom: 5px;
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #61dafb;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.note-item input {
+  margin-right: 10px;
+}
+
+.note-done label {
+  text-decoration: line-through;
 }
 
 .todo-delete {
