@@ -59,10 +59,14 @@ function App(props) {
     }
   };
 
+  const Error = (isShow) => {
+    return <>{isShow && <p className="error">{error.message}</p>}</>;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        {error.state && <p className="error">{error.message}</p>}
+        <Error isShow={error.state} />
         {todoList.length ? (
           <ul className="todo-list">
             {todoList.map((todo, index) => (
