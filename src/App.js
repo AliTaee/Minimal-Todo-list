@@ -46,6 +46,16 @@ function App(props) {
     setTodoList(newState);
   };
 
+  const handelCreateNote = (event) => {
+    setToAddList(event.target.value);
+  };
+
+  const createNoteOnEnter = (event) => {
+    if (event.key === "Enter") {
+      handelAddToDo();
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -57,13 +67,15 @@ function App(props) {
                 className={todo.done ? "note-item note-done" : "note-item"}
                 key={todo.id}
               >
-                <input
-                  id={`note-state-${index}`}
-                  type="checkbox"
-                  value={todo.done}
-                  onChange={() => toggleTodoState(todo.id)}
-                />
-                <label htmlFor={`note-state-${index}`}>{todo.title}</label>
+                <div>
+                  <input
+                    id={`note-state-${index}`}
+                    type="checkbox"
+                    value={todo.done}
+                    onChange={() => toggleTodoState(todo.id)}
+                  />
+                  <label htmlFor={`note-state-${index}`}>{todo.title}</label>
+                </div>
                 <button
                   onClick={() => deleteTodo(todo.id)}
                   className="todo-delete"
@@ -83,7 +95,8 @@ function App(props) {
             autoFocus
             type="text"
             value={toAddList}
-            onChange={(e) => setToAddList(e.target.value)}
+            onChange={handelCreateNote}
+            onKeyPress={createNoteOnEnter}
           />
           <button className="todo-submit" onClick={handelAddToDo}>
             Add to list
