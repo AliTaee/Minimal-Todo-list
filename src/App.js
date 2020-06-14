@@ -59,13 +59,28 @@ function App(props) {
     }
   };
 
-  const Error = (isShow) => {
+  const Error = ({ isShow }) => {
     return <>{isShow && <p className="error">{error.message}</p>}</>;
   };
 
   return (
     <div className="App">
       <header className="App-header">
+        <div className="add-todo-container">
+          <label htmlFor="addTodoItem">Add New note</label>
+          <input
+            ref={inputNote}
+            id="addTodoItem"
+            autoFocus
+            type="text"
+            value={toAddList}
+            onChange={handelCreateNote}
+            onKeyPress={createNoteOnEnter}
+          />
+          <button className="todo-submit" onClick={handelAddToDo}>
+            Add to list
+          </button>
+        </div>
         <Error isShow={error.state} />
         {todoList.length ? (
           <ul className="todo-list">
@@ -95,21 +110,6 @@ function App(props) {
         ) : (
           <p>There is nothing todo!</p>
         )}
-        <div className="add-todo-container">
-          <label htmlFor="addTodoItem">Add New note</label>
-          <input
-            ref={inputNote}
-            id="addTodoItem"
-            autoFocus
-            type="text"
-            value={toAddList}
-            onChange={handelCreateNote}
-            onKeyPress={createNoteOnEnter}
-          />
-          <button className="todo-submit" onClick={handelAddToDo}>
-            Add to list
-          </button>
-        </div>
       </header>
     </div>
   );
