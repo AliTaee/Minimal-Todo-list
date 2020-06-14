@@ -69,6 +69,7 @@ function App(props) {
         <div className="add-todo-container">
           <label htmlFor="addTodoItem">Add New note</label>
           <input
+            placeholder="add a new note"
             ref={inputNote}
             id="addTodoItem"
             autoFocus

@@ -32,16 +32,28 @@ describe("Test Todo list with initial data", () => {
   });
 
   test("There must be Button to add note to list", () => {
-    const addButton = screen.getByText(/Add to list/i);
+    const addButton = screen.getByText(/add to list/i);
     expect(addButton).toBeInTheDocument();
   });
 
-  test("Add new note", () => {
-    fireEvent.change(screen.getByLabelText(/Add New note/i), {
+  test("Add new note by click on submit button", () => {
+    fireEvent.change(screen.getByLabelText(/add new note/i), {
       target: { value: "learning unit testing" },
     });
-    fireEvent.click(screen.getByText(/Add to list/i));
+    fireEvent.click(screen.getByText(/add to list/i));
     expect(screen.getByText("learning unit testing")).toBeInTheDocument();
+  });
+
+  test("Add new note by Keypress Enter", () => {
+    fireEvent.change(screen.getByLabelText(/add new note/i), {
+      target: { value: "learning e2e testing" },
+    });
+    fireEvent.keyPress(screen.getByPlaceholderText(/add a new note/i), {
+      key: "Enter",
+      code: 13,
+      charCode: 13,
+    });
+    expect(screen.getByText("learning e2e testing")).toBeInTheDocument();
   });
 });
 
