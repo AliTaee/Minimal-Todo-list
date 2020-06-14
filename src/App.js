@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./App.css";
 
 function App(props) {
   const { todo } = props;
+  const inputNote = useRef(null);
   const [todoList, setTodoList] = useState(todo);
   const [toAddList, setToAddList] = useState("");
   const [error, setError] = useState({ state: false, message: "" });
@@ -23,6 +24,8 @@ function App(props) {
       setToAddList("");
       // Clear Pre error message
       setError({ state: false, message: "" });
+      // Set focus to input after submit
+      inputNote.current.focus();
     }
   };
 
@@ -91,6 +94,7 @@ function App(props) {
         <div className="add-todo-container">
           <label htmlFor="addTodoItem">Add New note</label>
           <input
+            ref={inputNote}
             id="addTodoItem"
             autoFocus
             type="text"
