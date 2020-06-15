@@ -65,53 +65,60 @@ function App(props) {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="add-todo-container">
-          <label htmlFor="addTodoItem">Add New note</label>
-          <input
-            placeholder="add a new note"
-            ref={inputNote}
-            id="addTodoItem"
-            autoFocus
-            type="text"
-            value={toAddList}
-            onChange={handelCreateNote}
-            onKeyPress={createNoteOnEnter}
-          />
-          <button className="todo-submit" onClick={handelAddToDo}>
-            Add to list
-          </button>
-        </div>
-        <Error isShow={error.state} />
-        {todoList.length ? (
-          <ul className="todo-list">
-            {todoList.map((todo, index) => (
-              <li
-                className={todo.done ? "note-item note-done" : "note-item"}
-                key={todo.id}
-              >
-                <div>
-                  <input
-                    id={`note-state-${index}`}
-                    type="checkbox"
-                    value={todo.done}
-                    onChange={() => toggleTodoState(todo.id)}
-                  />
-                  <label htmlFor={`note-state-${index}`}>{todo.title}</label>
-                </div>
-                <button
-                  onClick={() => deleteTodo(todo.id)}
-                  className="todo-delete"
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>There is nothing todo!</p>
-        )}
-      </header>
+      <main className="App-container">
+        <section class="todo">
+          <header>
+            <h1 className="todo__title">Todo list</h1>
+            <input
+              placeholder="add a new note"
+              ref={inputNote}
+              autoFocus
+              type="text"
+              value={toAddList}
+              onChange={handelCreateNote}
+              onKeyPress={createNoteOnEnter}
+            />
+            <button className="todo__submit" onClick={handelAddToDo}>
+              Add to list
+            </button>
+          </header>
+          <section>
+            <Error isShow={error.state} />
+            {todoList.length ? (
+              <ul className="todo__list">
+                {todoList.map((todo, index) => (
+                  <li
+                    className={
+                      todo.done ? "todo__item todo__item--done" : "todo__item"
+                    }
+                    key={todo.id}
+                  >
+                    <div>
+                      <input
+                        id={`note-state-${index}`}
+                        type="checkbox"
+                        value={todo.done}
+                        onChange={() => toggleTodoState(todo.id)}
+                      />
+                      <label htmlFor={`note-state-${index}`}>
+                        {todo.title}
+                      </label>
+                    </div>
+                    <button
+                      onClick={() => deleteTodo(todo.id)}
+                      className="todo__delete"
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>There is nothing todo!</p>
+            )}
+          </section>
+        </section>
+      </main>
     </div>
   );
 }

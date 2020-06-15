@@ -37,7 +37,7 @@ describe("Test Todo list with initial data", () => {
   });
 
   test("Add new note by click on submit button", () => {
-    fireEvent.change(screen.getByLabelText(/add new note/i), {
+    fireEvent.change(screen.getByPlaceholderText(/add a new note/i), {
       target: { value: "learning unit testing" },
     });
     fireEvent.click(screen.getByText(/add to list/i));
@@ -45,7 +45,7 @@ describe("Test Todo list with initial data", () => {
   });
 
   test("Add new note by Keypress Enter", () => {
-    fireEvent.change(screen.getByLabelText(/add new note/i), {
+    fireEvent.change(screen.getByPlaceholderText(/add a new note/i), {
       target: { value: "learning e2e testing" },
     });
     fireEvent.keyPress(screen.getByPlaceholderText(/add a new note/i), {
@@ -54,6 +54,7 @@ describe("Test Todo list with initial data", () => {
       charCode: 13,
     });
     expect(screen.getByText("learning e2e testing")).toBeInTheDocument();
+    //ToDo check note item length, here it must be 3
   });
 });
 
@@ -66,3 +67,5 @@ describe("Test todo list with no initial data!", () => {
     expect(screen.getByText(/There is nothing todo!/i)).toBeInTheDocument();
   });
 });
+
+//ToDo Add test for note item state, check or uncheck
