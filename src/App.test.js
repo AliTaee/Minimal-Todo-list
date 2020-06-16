@@ -54,7 +54,6 @@ describe("Test Todo list with initial data", () => {
       charCode: 13,
     });
     expect(screen.getByText("learning e2e testing")).toBeInTheDocument();
-    //ToDo check note item length, here it must be 3
   });
 });
 
