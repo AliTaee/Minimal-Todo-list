@@ -57,14 +57,21 @@
   color: #06d6a0;
 }
 
-.todo__delete {
+.todo__btn {
   margin-left: 10px;
   cursor: pointer;
   color: #fff;
   border: 0;
   border-radius: 4px;
   padding: 6px 12px;
+}
+
+.todo__btn--red {
   background: #ef233c;
+}
+
+.todo__btn--black {
+  background: #2b2d42;
 }
 
 .todo__submit {

@@ -6,7 +6,12 @@ function App(props) {
   const inputNote = useRef(null);
   const [todoList, setTodoList] = useState(todo);
   const [toAddList, setToAddList] = useState("");
+  const [isEdit, setIsEdit] = useState({ state: false, id: 0 });
   const [error, setError] = useState({ state: false, message: "" });
+
+  const setFocus = () => {
+    inputNote.current.focus();
+  };
 
   const handelAddToDo = () => {
     if (toAddList === "") {
@@ -24,8 +29,7 @@ function App(props) {
       setToAddList("");
       // Clear Pre error message
       setError({ state: false, message: "" });
-      // Set focus to input after submit
-      inputNote.current.focus();
+      setFocus();
     }
   };
 
@@ -49,13 +53,39 @@ function App(props) {
     setTodoList(newState);
   };
 
+  const editTodo = (todoId) => {
+    const editId = todoList.findIndex((todo) => todo.id === todoId);
+    setToAddList(todoList[editId].title);
+    setIsEdit({ state: true, id: todoId });
+    setFocus();
+  };
+
+  const handelEdit = () => {
+    const updatedList = todoList.map((todo) => {
+      if (todo.id === isEdit.id) {
+        return {
+          ...todo,
+          title: toAddList,
+        };
+      }
+      return todo;
+    });
+    setTodoList(updatedList);
+    // Clear input field
+    setToAddList("");
+    setIsEdit({ state: false, id: 0 });
+    setFocus();
+  };
+
   const handelCreateNote = (event) => {
     setToAddList(event.target.value);
   };
 
   const createNoteOnEnter = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !isEdit.state) {
       handelAddToDo();
+    } else if (event.key === "Enter" && isEdit.state) {
+      handelEdit();
     }
   };
 
@@ -66,7 +96,7 @@ function App(props) {
   return (
     <div className="App">
       <main className="App-container">
-        <section class="todo">
+        <section className="todo">
           <header>
             <h1 className="todo__title">Todo list</h1>
             <input
@@ -78,8 +108,11 @@ function App(props) {
               onChange={handelCreateNote}
               onKeyPress={createNoteOnEnter}
             />
-            <button className="todo__submit" onClick={handelAddToDo}>
-              Add to list
+            <button
+              className="todo__submit"
+              onClick={isEdit.state ? handelEdit : handelAddToDo}
+            >
+              {isEdit.state ? "Edit" : "Add to list"}
             </button>
           </header>
           <section>
@@ -104,12 +137,20 @@ function App(props) {
                         {todo.title}
                       </label>
                     </div>
-                    <button
-                      onClick={() => deleteTodo(todo.id)}
-                      className="todo__delete"
-                    >
-                      Delete
-                    </button>
+                    <div>
+                      <button
+                        onClick={() => editTodo(todo.id)}
+                        className="todo__btn todo__btn--black"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => deleteTodo(todo.id)}
+                        className="todo__btn todo__btn--red"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
