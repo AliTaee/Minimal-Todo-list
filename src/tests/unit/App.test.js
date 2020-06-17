@@ -98,6 +98,15 @@ describe("Test Todo list with initial data", () => {
 
     expect(screen.getByText(/buy oil/i)).toBeInTheDocument();
   });
+
+  test("Toggle note states", () => {
+    const firstNote = screen.getByLabelText(initialTodoList[0].title);
+    fireEvent.click(firstNote);
+    expect(firstNote.value).toBe("true");
+
+    fireEvent.click(firstNote);
+    expect(firstNote.value).toBe("false");
+  });
 });
 
 describe("Test todo list with no initial data!", () => {
