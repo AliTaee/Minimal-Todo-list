@@ -9,6 +9,17 @@ Simple todo list with react hooks to Study and practice Unit and E2E testing.
 - Unit test with Jest and Testing-library
 - E2E test with Jest and Cypress
 
+## Technologies used
+
+- [React](https://reactjs.org/)
+- [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/) for unit tests and snapshot tests
+- [Cypress](https://www.cypress.io/) for e2e tests
+
+## Dev Tools
+
+- Eslint for linting
+- Prettier for code formatting
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

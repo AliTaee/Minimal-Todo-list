@@ -1,38 +1,38 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
-import "./styles/App.css";
+import React, { useRef, useState } from 'react'
+import PropTypes from 'prop-types'
+import './styles/App.css'
 
 function App(props) {
-  const { todo } = props;
-  const inputNote = useRef(null);
-  const [todoList, setTodoList] = useState(todo);
-  const [toAddList, setToAddList] = useState("");
-  const [isEdit, setIsEdit] = useState({ state: false, id: 0 });
-  const [error, setError] = useState({ state: false, message: "" });
+  const { todo } = props
+  const inputNote = useRef(null)
+  const [todoList, setTodoList] = useState(todo)
+  const [toAddList, setToAddList] = useState('')
+  const [isEdit, setIsEdit] = useState({ state: false, id: 0 })
+  const [error, setError] = useState({ state: false, message: '' })
 
   const setFocus = () => {
-    inputNote.current.focus();
-  };
+    inputNote.current.focus()
+  }
 
   const handelAddToDo = () => {
-    if (toAddList === "") {
-      setError({ state: true, message: "You can't add empty note!" });
-      return;
+    if (toAddList === '') {
+      setError({ state: true, message: "You can't add empty note!" })
+      return
     } else {
-      let maxId = 0;
+      let maxId = 0
       todoList.forEach((todo) => {
-        if (todo.id > maxId) maxId = todo.id;
-      });
-      maxId++;
+        if (todo.id > maxId) maxId = todo.id
+      })
+      maxId++
       // Add a new todo list
-      setTodoList([...todoList, { id: maxId, title: toAddList, done: false }]);
+      setTodoList([...todoList, { id: maxId, title: toAddList, done: false }])
       // Clear input field
-      setToAddList("");
+      setToAddList('')
       // Clear Pre error message
-      setError({ state: false, message: "" });
-      setFocus();
+      setError({ state: false, message: '' })
+      setFocus()
     }
-  };
+  }
 
   // Toggle todo state
   const toggleTodoState = (todoId) => {
@@ -41,26 +41,26 @@ function App(props) {
         return {
           ...todo,
           done: !todo.done,
-        };
+        }
       }
-      return todo;
-    });
-    setTodoList(newState);
-  };
+      return todo
+    })
+    setTodoList(newState)
+  }
 
   //Delete todo
   const deleteTodo = (todoId) => {
-    const newState = todoList.filter((todo) => todo.id !== todoId);
-    setTodoList(newState);
-  };
+    const newState = todoList.filter((todo) => todo.id !== todoId)
+    setTodoList(newState)
+  }
 
   // Set note text to input for edit
   const editTodo = (todoId) => {
-    const editId = todoList.findIndex((todo) => todo.id === todoId);
-    setToAddList(todoList[editId].title);
-    setIsEdit({ state: true, id: todoId });
-    setFocus();
-  };
+    const editId = todoList.findIndex((todo) => todo.id === todoId)
+    setToAddList(todoList[editId].title)
+    setIsEdit({ state: true, id: todoId })
+    setFocus()
+  }
 
   // Save edit note
   const handelSaveEdit = () => {
@@ -69,34 +69,34 @@ function App(props) {
         return {
           ...todo,
           title: toAddList,
-        };
+        }
       }
-      return todo;
-    });
-    setTodoList(updatedList);
+      return todo
+    })
+    setTodoList(updatedList)
     // Clear input field
-    setToAddList("");
-    setIsEdit({ state: false, id: 0 });
-    setFocus();
-  };
+    setToAddList('')
+    setIsEdit({ state: false, id: 0 })
+    setFocus()
+  }
 
   // Save user type a new note text
   const handelNewNoteText = (event) => {
-    setToAddList(event.target.value);
-  };
+    setToAddList(event.target.value)
+  }
 
   const createNoteOnEnter = (event) => {
-    if (event.key === "Enter" && !isEdit.state) {
-      handelAddToDo();
-    } else if (event.key === "Enter" && isEdit.state) {
-      handelSaveEdit();
+    if (event.key === 'Enter' && !isEdit.state) {
+      handelAddToDo()
+    } else if (event.key === 'Enter' && isEdit.state) {
+      handelSaveEdit()
     }
-  };
+  }
 
   // If user want a add empty note this component will show
   const Error = ({ isShow }) => {
-    return <>{isShow && <p className="error">{error.message}</p>}</>;
-  };
+    return <>{isShow && <p className="error">{error.message}</p>}</>
+  }
 
   return (
     <div className="App">
@@ -119,7 +119,7 @@ function App(props) {
               className="todo__submit"
               onClick={isEdit.state ? handelSaveEdit : handelAddToDo}
             >
-              {isEdit.state ? "Edit Note" : "Add to list"}
+              {isEdit.state ? 'Edit Note' : 'Add to list'}
             </button>
           </header>
           <section>
@@ -130,7 +130,7 @@ function App(props) {
                   <li
                     data-test="note-item"
                     className={
-                      todo.done ? "todo__item todo__item--done" : "todo__item"
+                      todo.done ? 'todo__item todo__item--done' : 'todo__item'
                     }
                     key={todo.id}
                   >
@@ -175,11 +175,11 @@ function App(props) {
         </section>
       </main>
     </div>
-  );
+  )
 }
 
 App.propTypes = {
   todo: PropTypes.array.isRequired,
-};
+}
 
-export default App;
+export default App
