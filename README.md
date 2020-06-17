@@ -1,3 +1,14 @@
+# TODO LIST
+
+Simple todo list with react hooks to Study and practice Unit and E2E testing.
+
+![todo list with react hooks, Unit and E2E testing](./src/assets/screenshot.png)
+
+## About testing
+
+- Unit test with Jest and Testing-library
+- E2E test with Jest and Cypress
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
