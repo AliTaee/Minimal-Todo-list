@@ -55,6 +55,14 @@ describe("Test Todo list with initial data", () => {
     });
     expect(screen.getByText("learning e2e testing")).toBeInTheDocument();
   });
+
+  test("Shoud not add empty note when input is empty and show error", () => {
+    fireEvent.change(screen.getByPlaceholderText(/add a new note/i), {
+      target: { value: "" },
+    });
+    fireEvent.click(screen.getByText(/add to list/i));
+    expect(screen.getByText(/You can't add empty note!/i)).toBeInTheDocument();
+  });
 });
 
 describe("Test todo list with no initial data!", () => {
