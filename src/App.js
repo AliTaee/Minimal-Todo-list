@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 
 function App(props) {
   const { todo } = props;
