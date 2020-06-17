@@ -1,20 +1,16 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import initialTodoList from "./model/init-data";
 import App from "./App";
 
 describe("Test Todo list with initial data", () => {
-  const todoList = [
-    { id: 1, title: "Buy milk", done: false },
-    { id: 2, title: "Learning React", done: false },
-  ];
-
   beforeEach(() => {
-    render(<App todo={todoList} />);
+    render(<App todo={initialTodoList} />);
   });
 
   test("Must have 2 note on list", () => {
-    expect(screen.getByText(todoList[0].title)).toBeInTheDocument();
-    expect(screen.getByText(todoList[1].title)).toBeInTheDocument();
+    expect(screen.getByText(initialTodoList[0].title)).toBeInTheDocument();
+    expect(screen.getByText(initialTodoList[1].title)).toBeInTheDocument();
   });
 
   test("Must have 2 delete button on list", () => {
@@ -27,8 +23,10 @@ describe("Test Todo list with initial data", () => {
     // Click!
     fireEvent.click(firstDeleteButton);
     // Check result
-    expect(screen.queryByText(todoList[0].title)).not.toBeInTheDocument();
-    expect(screen.getByText(todoList[1].title)).toBeInTheDocument();
+    expect(
+      screen.queryByText(initialTodoList[0].title)
+    ).not.toBeInTheDocument();
+    expect(screen.getByText(initialTodoList[1].title)).toBeInTheDocument();
   });
 
   test("There must be Button to add note to list", () => {
@@ -74,5 +72,3 @@ describe("Test todo list with no initial data!", () => {
     expect(screen.getByText(/There is nothing todo!/i)).toBeInTheDocument();
   });
 });
-
-//ToDo Add test for note item state, check or uncheck

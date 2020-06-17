@@ -3,15 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-const todoList = [
-  { id: 1, title: "Buy milk", done: false },
-  { id: 2, title: "Learning React", done: false },
-];
+import initialTodoList from "./model/init-data";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App todo={todoList} />
+    <App todo={initialTodoList} />
   </React.StrictMode>,
   document.getElementById("root")
 );
