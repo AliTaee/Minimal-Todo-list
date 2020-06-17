@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import './styles/App.css'
 
-function App(props) {
+import Error from './error/error'
+import '../styles/App.css'
+
+const App = (props) => {
   const { todo } = props
   const inputNote = useRef(null)
   const [todoList, setTodoList] = useState(todo)
@@ -93,11 +95,6 @@ function App(props) {
     }
   }
 
-  // If user want a add empty note this component will show
-  const Error = ({ isShow }) => {
-    return <>{isShow && <p className="error">{error.message}</p>}</>
-  }
-
   return (
     <div className="App">
       <main className="App-container">
@@ -123,7 +120,7 @@ function App(props) {
             </button>
           </header>
           <section>
-            <Error isShow={error.state} />
+            <Error isShow={error.state} message={error.message} />
             {todoList.length ? (
               <ul className="todo__list">
                 {todoList.map((todo, index) => (
