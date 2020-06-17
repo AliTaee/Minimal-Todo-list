@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import initialTodoList from "./model/init-data";
-import App from "./App";
+import initialTodoList from "../../model/init-data";
+import App from "../../App";
 
 describe("Test Todo list with initial data", () => {
   beforeEach(() => {

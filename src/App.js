@@ -53,6 +53,7 @@ function App(props) {
     setTodoList(newState);
   };
 
+  // Set note text to input for edit
   const editTodo = (todoId) => {
     const editId = todoList.findIndex((todo) => todo.id === todoId);
     setToAddList(todoList[editId].title);
@@ -60,7 +61,8 @@ function App(props) {
     setFocus();
   };
 
-  const handelEdit = () => {
+  // Save edit note
+  const handelSaveEdit = () => {
     const updatedList = todoList.map((todo) => {
       if (todo.id === isEdit.id) {
         return {
@@ -77,7 +79,8 @@ function App(props) {
     setFocus();
   };
 
-  const handelCreateNote = (event) => {
+  // Save user type a new note text
+  const handelNewNoteText = (event) => {
     setToAddList(event.target.value);
   };
 
@@ -85,10 +88,11 @@ function App(props) {
     if (event.key === "Enter" && !isEdit.state) {
       handelAddToDo();
     } else if (event.key === "Enter" && isEdit.state) {
-      handelEdit();
+      handelSaveEdit();
     }
   };
 
+  // If user want a add empty note this component will show
   const Error = ({ isShow }) => {
     return <>{isShow && <p className="error">{error.message}</p>}</>;
   };
@@ -105,12 +109,12 @@ function App(props) {
               autoFocus
               type="text"
               value={toAddList}
-              onChange={handelCreateNote}
+              onChange={handelNewNoteText}
               onKeyPress={createNoteOnEnter}
             />
             <button
               className="todo__submit"
-              onClick={isEdit.state ? handelEdit : handelAddToDo}
+              onClick={isEdit.state ? handelSaveEdit : handelAddToDo}
             >
               {isEdit.state ? "Edit" : "Add to list"}
             </button>
