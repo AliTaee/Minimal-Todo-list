@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
 import "./styles/App.css";
 
 function App(props) {
@@ -176,5 +177,9 @@ function App(props) {
     </div>
   );
 }
+
+App.propTypes = {
+  todo: PropTypes.array.isRequired,
+};
 
 export default App;
