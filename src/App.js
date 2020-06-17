@@ -116,7 +116,7 @@ function App(props) {
               className="todo__submit"
               onClick={isEdit.state ? handelSaveEdit : handelAddToDo}
             >
-              {isEdit.state ? "Edit" : "Add to list"}
+              {isEdit.state ? "Edit Note" : "Add to list"}
             </button>
           </header>
           <section>

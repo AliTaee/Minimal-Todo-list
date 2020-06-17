@@ -17,6 +17,10 @@ describe("Test Todo list with initial data", () => {
     expect(screen.getAllByText(/delete/i)).toHaveLength(2);
   });
 
+  test("There must be tow edit button", () => {
+    expect(screen.getAllByText(/edit/i)).toHaveLength(2);
+  });
+
   test("Delete a note and there must be a single note on the list", () => {
     // Get first button delete
     const firstDeleteButton = screen.getAllByText(/delete/i)[0];
@@ -60,6 +64,39 @@ describe("Test Todo list with initial data", () => {
     });
     fireEvent.click(screen.getByText(/add to list/i));
     expect(screen.getByText(/You can't add empty note!/i)).toBeInTheDocument();
+  });
+
+  test("Edit first note and save it with button", () => {
+    const firstEditButton = screen.getAllByText(/edit/i)[0];
+    const inputNote = screen.getByPlaceholderText(/add a new note/i);
+
+    fireEvent.click(firstEditButton);
+    expect(inputNote.value).toMatch(initialTodoList[0].title);
+    fireEvent.change(inputNote, {
+      target: { value: "Buy egg" },
+    });
+
+    fireEvent.click(screen.getByText(/edit note/i));
+    expect(screen.getByText(/buy egg/i)).toBeInTheDocument();
+  });
+
+  test("Edit second note and save it with keypress enter", () => {
+    const secondEditButton = screen.getAllByText(/edit/i)[1];
+    const inputNote = screen.getByPlaceholderText(/add a new note/i);
+
+    fireEvent.click(secondEditButton);
+    expect(inputNote.value).toMatch(initialTodoList[1].title);
+    fireEvent.change(inputNote, {
+      target: { value: "Buy Oil" },
+    });
+
+    fireEvent.keyPress(inputNote, {
+      key: "Enter",
+      code: 13,
+      charCode: 13,
+    });
+
+    expect(screen.getByText(/buy oil/i)).toBeInTheDocument();
   });
 });
 
