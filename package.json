@@ -1,6 +1,7 @@
 {
-  "name": "react-lab",
+  "name": "minimal-todo-list",
   "version": "0.1.0",
+  "author": "Ali Taee",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -13,7 +14,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "unit": "react-scripts test tests/unit",
+    "unit:coverage": "react-scripts test tests/unit --coverage",
+    "e2e": "cypress run",
+    "e2e:open": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

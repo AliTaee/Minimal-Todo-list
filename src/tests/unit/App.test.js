@@ -17,7 +17,7 @@ describe("Test Todo list with initial data", () => {
     expect(screen.getAllByText(/delete/i)).toHaveLength(2);
   });
 
-  test("There must be tow edit button", () => {
+  test("There must be to edit button", () => {
     expect(screen.getAllByText(/edit/i)).toHaveLength(2);
   });
 
@@ -58,7 +58,7 @@ describe("Test Todo list with initial data", () => {
     expect(screen.getByText("learning e2e testing")).toBeInTheDocument();
   });
 
-  test("Shoud not add empty note when input is empty and show error", () => {
+  test("Shoud not add empty note when input field is empty and show error", () => {
     fireEvent.change(screen.getByPlaceholderText(/add a new note/i), {
       target: { value: "" },
     });

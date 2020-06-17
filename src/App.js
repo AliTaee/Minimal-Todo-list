@@ -104,6 +104,7 @@ function App(props) {
           <header>
             <h1 className="todo__title">Todo list</h1>
             <input
+              data-test="input-new-note"
               placeholder="add a new note"
               ref={inputNote}
               autoFocus
@@ -113,6 +114,7 @@ function App(props) {
               onKeyPress={createNoteOnEnter}
             />
             <button
+              data-test="submit-note"
               className="todo__submit"
               onClick={isEdit.state ? handelSaveEdit : handelAddToDo}
             >
@@ -125,6 +127,7 @@ function App(props) {
               <ul className="todo__list">
                 {todoList.map((todo, index) => (
                   <li
+                    data-test="note-item"
                     className={
                       todo.done ? "todo__item todo__item--done" : "todo__item"
                     }
@@ -132,23 +135,29 @@ function App(props) {
                   >
                     <div>
                       <input
+                        data-test="note-item-state"
                         id={`note-state-${index}`}
                         type="checkbox"
                         value={todo.done}
                         onChange={() => toggleTodoState(todo.id)}
                       />
-                      <label htmlFor={`note-state-${index}`}>
+                      <label
+                        data-test="note-item-label"
+                        htmlFor={`note-state-${index}`}
+                      >
                         {todo.title}
                       </label>
                     </div>
                     <div>
                       <button
+                        data-test="edit-note"
                         onClick={() => editTodo(todo.id)}
                         className="todo__btn todo__btn--black"
                       >
                         Edit
                       </button>
                       <button
+                        data-test="delete-note"
                         onClick={() => deleteTodo(todo.id)}
                         className="todo__btn todo__btn--red"
                       >
@@ -159,7 +168,7 @@ function App(props) {
                 ))}
               </ul>
             ) : (
-              <p>There is nothing todo!</p>
+              <p data-test="empty-message">There is nothing todo!</p>
             )}
           </section>
         </section>
