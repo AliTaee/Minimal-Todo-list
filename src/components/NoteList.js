@@ -1,6 +1,8 @@
 import React from 'react'
 import Error from './error/error'
 
+import PropTypes from 'prop-types'
+
 const NoteList = (props) => {
   const { todoList, toggleTodoState, error, editTodo, deleteTodo } = props
   return (
@@ -55,6 +57,14 @@ const NoteList = (props) => {
       )}
     </>
   )
+}
+
+NoteList.propTypes = {
+  editTodo: PropTypes.func.isRequired,
+  error: PropTypes.shape().isRequired,
+  todoList: PropTypes.array.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  toggleTodoState: PropTypes.func.isRequired,
 }
 
 export default NoteList
