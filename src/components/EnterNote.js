@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const EnterNote = (props) => {
   const {
@@ -10,6 +11,7 @@ const EnterNote = (props) => {
     handelNewNoteText,
     createNoteOnEnter,
   } = props
+
   return (
     <>
       <input
@@ -31,6 +33,16 @@ const EnterNote = (props) => {
       </button>
     </>
   )
+}
+
+EnterNote.propTypes = {
+  isEdit: PropTypes.shape().isRequired,
+  toAddList: PropTypes.string.isRequired,
+  inputNote: PropTypes.shape().isRequired,
+  handelAddToDo: PropTypes.func.isRequired,
+  handelSaveEdit: PropTypes.func.isRequired,
+  handelNewNoteText: PropTypes.func.isRequired,
+  createNoteOnEnter: PropTypes.func.isRequired,
 }
 
 export default EnterNote
