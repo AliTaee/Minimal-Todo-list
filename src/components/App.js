@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import Error from './error/error'
+import NoteList from './NoteList'
+import EnterNote from './EnterNote'
 import '../styles/App.css'
 
 const App = (props) => {
@@ -101,74 +102,23 @@ const App = (props) => {
         <section className="todo">
           <header>
             <h1 className="todo__title">Todo list</h1>
-            <input
-              data-test="input-new-note"
-              placeholder="add a new note"
-              ref={inputNote}
-              autoFocus
-              type="text"
-              value={toAddList}
-              onChange={handelNewNoteText}
-              onKeyPress={createNoteOnEnter}
+            <EnterNote
+              isEdit={isEdit}
+              inputNote={inputNote}
+              toAddList={toAddList}
+              handelAddToDo={handelAddToDo}
+              handelSaveEdit={handelSaveEdit}
+              createNoteOnEnter={createNoteOnEnter}
+              handelNewNoteText={handelNewNoteText}
             />
-            <button
-              data-test="submit-note"
-              className="todo__submit"
-              onClick={isEdit.state ? handelSaveEdit : handelAddToDo}
-            >
-              {isEdit.state ? 'Edit Note' : 'Add to list'}
-            </button>
           </header>
-          <section>
-            <Error isShow={error.state} message={error.message} />
-            {todoList.length ? (
-              <ul className="todo__list">
-                {todoList.map((todo, index) => (
-                  <li
-                    data-test="note-item"
-                    className={
-                      todo.done ? 'todo__item todo__item--done' : 'todo__item'
-                    }
-                    key={todo.id}
-                  >
-                    <div>
-                      <input
-                        data-test="note-item-state"
-                        id={`note-state-${index}`}
-                        type="checkbox"
-                        value={todo.done}
-                        onChange={() => toggleTodoState(todo.id)}
-                      />
-                      <label
-                        data-test="note-item-label"
-                        htmlFor={`note-state-${index}`}
-                      >
-                        {todo.title}
-                      </label>
-                    </div>
-                    <div>
-                      <button
-                        data-test="edit-note"
-                        onClick={() => editTodo(todo.id)}
-                        className="todo__btn todo__btn--black"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        data-test="delete-note"
-                        onClick={() => deleteTodo(todo.id)}
-                        className="todo__btn todo__btn--red"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p data-test="empty-message">There is nothing todo!</p>
-            )}
-          </section>
+          <NoteList
+            error={error}
+            todoList={todoList}
+            editTodo={editTodo}
+            deleteTodo={deleteTodo}
+            toggleTodoState={toggleTodoState}
+          />
         </section>
       </main>
     </div>
